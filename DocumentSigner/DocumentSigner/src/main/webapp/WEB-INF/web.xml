@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-servlet.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>authenticationFilter</filter-name>
+		<filter-class>org.bridgelabz.documentsigner.filter.TokenBasedAuthFilter</filter-class>
+		<!-- <filter-class>org.bridgelabz.docsigner.filter.AuthenticationFilter</filter-class> -->
+	</filter>
+
+	<filter-mapping>
+		<filter-name>authenticationFilter</filter-name>
+		<url-pattern>/addDocuments</url-pattern>
+		<!-- <url-pattern>/documentDetails</url-pattern> -->
+		<url-pattern>/documentList</url-pattern>
+		<url-pattern>/addSignatures</url-pattern>
+		<!-- <url-pattern>/documentDetails</url-pattern> -->
+		<url-pattern>/signatureList</url-pattern>
+		<url-pattern>/success</url-pattern>
+		<url-pattern>/download</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+</web-app>
