@@ -33,7 +33,7 @@ public class TokenServiceImpl implements TokenService {
 		return null;
 	}
 
-	public Token addToken(User user, Token token) {
+	public Token addToken(Token token) {
 		Session session = sessionFactory.getCurrentSession();
 
 		try {

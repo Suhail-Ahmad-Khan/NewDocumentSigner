@@ -110,10 +110,3 @@ public class DocumentController {
 
 	}
 }
-
-/*
- * FileOutputStream fos = new
- * FileOutputStream("/home/bridgeit/"+file.getOriginalFilename()); byte [] buff
- * = new byte[8000]; while( io.available() > 0 ) { int n = io.read(buff);
- * fos.write(buff, 0, n); } fos.close(); io.close();
- */

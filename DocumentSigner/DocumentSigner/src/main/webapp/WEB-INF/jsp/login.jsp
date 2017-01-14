@@ -32,18 +32,18 @@
 	</center>
 
 	<script type="text/javascript">
-		function loginFunction() {
+	 	function loginFunction() {
 			var emailV = $("#email").val();
 			var pass = $("#password").val();
+			
 			$.ajax({
 				url : "login",
 				method : "POST",
-				data : {
-					email : emailV,
-					password : pass
-				},
-				dataType : "json",
-			}).done(function(data) {
+				data : JSON.stringify({email : emailV, password : pass}),
+				contentType: 'application/json; charset=UTF-8',
+				dataType : "json"
+			})
+			.done(function(data) {
 				if (data.status == 1) {
 					window.location.href = 'document';
 					window.location = 'document';
