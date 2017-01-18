@@ -1,3 +1,7 @@
+// This program controls the time limit for which the user can remain logged on
+// in a session. It implements the filter class and makes use of access and 
+// refresh token to keep a tab on the session timeout. 
+
 package org.bridgelabz.documentsigner.filter;
 
 import java.io.IOException;
@@ -74,7 +78,7 @@ public class TokenBasedAuthFilter implements Filter {
 
 		long diff = currentDate.getTime() - date.getTime();
 		long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(diff);
-		if (diffInSeconds > 60) // 60sec
+		if (diffInSeconds > 60 * 60) // 60min
 		{
 			// generate json error response - access token is expired
 			response.setContentType("application/json");

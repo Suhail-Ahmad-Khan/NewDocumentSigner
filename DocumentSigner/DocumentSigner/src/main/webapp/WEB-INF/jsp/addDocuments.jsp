@@ -15,10 +15,6 @@
 		style="margin-left:35%" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td><label>Enter User ID:</label></td>
-				<td><form:input type="Number" path="userId" /></td>
-			</tr>
-			<tr>
 				<td><label>Enter Description:</label></td>
 				<td><form:input type="textarea" path="description" /></td>
 			</tr>

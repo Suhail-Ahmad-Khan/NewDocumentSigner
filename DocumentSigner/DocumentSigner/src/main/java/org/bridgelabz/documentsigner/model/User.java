@@ -1,3 +1,7 @@
+// POJO Class for Users whose data has to be saved in the database
+// Remember to create an entity in the database first
+// Only the tables are created automatically using Annotations
+
 package org.bridgelabz.documentsigner.model;
 
 import javax.persistence.Column;
@@ -35,6 +39,9 @@ public class User {
 
 	@Column(name = "Country")
 	private String country;
+	
+	// Getter and Setter methods which are used during
+	// various points in the various modules of the program.
 
 	public int getId() {
 		return id;

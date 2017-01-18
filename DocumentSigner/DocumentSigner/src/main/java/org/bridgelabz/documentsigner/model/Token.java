@@ -1,3 +1,5 @@
+// POJO Class for Token whose data has to be saved in the database
+
 package org.bridgelabz.documentsigner.model;
 
 import java.util.Date;
@@ -31,6 +33,9 @@ public class Token {
 
 	@Column(name = "createdOn")
 	private Date createdOn;
+
+	// Getter and Setter methods which are used during
+	// various points in the various modules of the program.
 
 	public int getId() {
 		return id;

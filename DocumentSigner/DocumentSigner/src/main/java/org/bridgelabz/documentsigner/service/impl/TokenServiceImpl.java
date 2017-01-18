@@ -1,3 +1,6 @@
+// This class defines and implements the functionalities declared in the 
+// service class of the Token.
+
 package org.bridgelabz.documentsigner.service.impl;
 
 import org.bridgelabz.documentsigner.model.Token;

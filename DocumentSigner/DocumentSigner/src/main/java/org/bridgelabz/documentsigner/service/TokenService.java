@@ -1,3 +1,6 @@
+// This is an interface which declares the methods 
+// and provides the services to the Token
+
 package org.bridgelabz.documentsigner.service;
 
 import org.bridgelabz.documentsigner.model.Token;
@@ -14,6 +17,6 @@ public interface TokenService {
 
 	public Token getTokenByRefToken(String refreshToken);
 
-	/*public Token generateToken(User user, Token token);*/
+	/* public Token generateToken(User user, Token token); */
 
 }

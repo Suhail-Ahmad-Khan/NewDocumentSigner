@@ -1,3 +1,8 @@
+// This is the controller section of the login page.
+// The methods defined here authenticates the user using his login and password 
+// stored in the database with the input provided in the login page of the browser.
+// The process of token generation is done here.
+
 package org.bridgelabz.documentsigner.controller;
 
 import java.io.IOException;

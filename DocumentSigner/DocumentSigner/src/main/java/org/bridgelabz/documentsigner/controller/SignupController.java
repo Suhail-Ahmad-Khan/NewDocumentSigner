@@ -1,3 +1,7 @@
+// This is the controller section of the sign-up page.
+// The methods defined here links the user with the input provided
+// in the sign-up page of the browser and stores the data into the database.
+
 package org.bridgelabz.documentsigner.controller;
 
 import javax.servlet.http.HttpServletRequest;

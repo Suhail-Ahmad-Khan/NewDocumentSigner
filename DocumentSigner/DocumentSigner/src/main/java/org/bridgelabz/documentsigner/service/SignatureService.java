@@ -1,3 +1,6 @@
+// This is an interface which declares the methods 
+// and provides the services to the Signature
+
 package org.bridgelabz.documentsigner.service;
 
 import java.io.InputStream;

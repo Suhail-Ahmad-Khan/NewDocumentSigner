@@ -1,3 +1,6 @@
+// This is an interface which declares the methods 
+// and provides the services to the User 
+
 package org.bridgelabz.documentsigner.service;
 
 import org.bridgelabz.documentsigner.model.User;

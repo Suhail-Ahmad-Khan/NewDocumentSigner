@@ -1,3 +1,8 @@
+// This is the controller section of the token.
+// The methods defined here generates a new access token using the refresh token 
+// and stored in the database.
+// The process of token generation is also done here.
+
 package org.bridgelabz.documentsigner.controller;
 
 import java.util.Date;
@@ -52,7 +57,7 @@ public class TokenController {
 
 		long diff = currentDate.getTime() - date.getTime();
 		long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(diff);
-		if (diffInSeconds > 60 * 60) // 60min
+		if (diffInSeconds > 60 * 60 * 24) // 1day
 		{
 			ErrorResponse er = new ErrorResponse();
 			er.setStatus(-6);

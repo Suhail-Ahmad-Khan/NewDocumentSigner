@@ -1,3 +1,6 @@
+// This class defines and implements the functionalities declared in the 
+// service class of the User.
+
 package org.bridgelabz.documentsigner.service.impl;
 
 import org.bridgelabz.documentsigner.model.User;

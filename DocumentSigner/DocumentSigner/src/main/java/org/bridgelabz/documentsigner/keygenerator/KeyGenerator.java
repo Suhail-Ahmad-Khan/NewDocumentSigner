@@ -1,3 +1,8 @@
+// Program for generating the same key again and again.
+// If multiple keys are generated for encryption and decryption of data
+// it would have to be stored in the database and we cannot save the keys in the database 
+// for the sole reason that if the database has been compromised one cannot use the keys to decrypt the data
+
 package org.bridgelabz.documentsigner.keygenerator;
 
 import java.security.InvalidAlgorithmParameterException;

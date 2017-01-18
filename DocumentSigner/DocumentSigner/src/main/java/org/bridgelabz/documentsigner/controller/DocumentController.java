@@ -1,3 +1,9 @@
+// This is the controller section of handling the documents.
+// The methods defined here adds the documents in the database,
+// lists the documents stored by the user in the database and downloads the
+// document on user's insistence.
+// The process of encryption during upload and decryption during download is done here.
+
 package org.bridgelabz.documentsigner.controller;
 
 import java.io.ByteArrayInputStream;

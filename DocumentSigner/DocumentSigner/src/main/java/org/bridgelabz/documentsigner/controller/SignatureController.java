@@ -1,3 +1,9 @@
+// This is the controller section of handling the signature(images).
+// The methods defined here adds the signatures in the database,
+// lists the signatures stored by the user in the database and downloads the
+// signature on user's insistence.
+// The process of encryption during upload and decryption during download is done here.
+
 package org.bridgelabz.documentsigner.controller;
 
 import java.io.ByteArrayInputStream;
@@ -59,7 +65,7 @@ public class SignatureController {
 			signature.setImageName(file.getOriginalFilename());
 			signature.setContentType(file.getContentType());
 			io = file.getInputStream();
-			
+
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] content = IOUtils.toByteArray(io);
@@ -105,13 +111,13 @@ public class SignatureController {
 				errorresponse.setDisplayMessage("Image not found");
 				return errorresponse;
 			}
-			
+
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] encryptedContent = IOUtils.toByteArray(io);
 			byte[] decryptData = keygen.decryptFile(documentKey, encryptedContent);
 			io = new ByteArrayInputStream(decryptData);
-			
+
 			byte[] buff = new byte[io.available()];
 			response.setContentType(signature.getContentType());
 			response.setHeader("Content-Disposition", "attachment; filename=" + signature.getImageName());
