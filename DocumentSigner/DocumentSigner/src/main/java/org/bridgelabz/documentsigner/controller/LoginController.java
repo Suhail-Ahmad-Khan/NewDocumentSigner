@@ -17,15 +17,11 @@ import org.bridgelabz.documentsigner.model.Token;
 import org.bridgelabz.documentsigner.model.User;
 import org.bridgelabz.documentsigner.service.TokenService;
 import org.bridgelabz.documentsigner.service.UserService;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -43,24 +39,25 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	/*public @ResponseBody Response login(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpServletRequest request, HttpServletResponse response) {
-	*/
-	public @ResponseBody Response login(@RequestBody User pUser, HttpServletRequest request, HttpServletResponse response) {
-		
-		/*System.out.println( lstr );
-		JSONObject jo = null;
-		try {
-			jo = (JSONObject) new JSONParser().parse(lstr);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+	/*
+	 * public @ResponseBody Response login(@RequestParam("email") String
+	 * email, @RequestParam("password") String password, HttpServletRequest
+	 * request, HttpServletResponse response) {
+	 */
+	public @ResponseBody Response login(@RequestBody User pUser, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		/*
+		 * System.out.println( lstr ); JSONObject jo = null; try { jo =
+		 * (JSONObject) new JSONParser().parse(lstr); } catch (ParseException e)
+		 * { // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
+
 		HttpSession session = request.getSession();
 		User user = userService.authUser(pUser.getEmail(), pUser.getPassword());
-		//User user = userService.authUser(jo.get("email").toString(), jo.get("password").toString());
-		
+		// User user = userService.authUser(jo.get("email").toString(),
+		// jo.get("password").toString());
+
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 		String refreshToken = UUID.randomUUID().toString().replaceAll("-", "");
 

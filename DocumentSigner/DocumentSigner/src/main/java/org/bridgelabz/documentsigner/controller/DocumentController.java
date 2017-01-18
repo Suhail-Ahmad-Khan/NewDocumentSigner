@@ -1,17 +1,21 @@
 package org.bridgelabz.documentsigner.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.crypto.SecretKey;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.bridgelabz.documentsigner.json.ErrorResponse;
 import org.bridgelabz.documentsigner.json.Response;
 import org.bridgelabz.documentsigner.json.SuccessResponse;
+import org.bridgelabz.documentsigner.keygenerator.KeyGenerator;
 import org.bridgelabz.documentsigner.model.Document;
 import org.bridgelabz.documentsigner.model.User;
 import org.bridgelabz.documentsigner.service.DocumentService;
@@ -56,6 +60,12 @@ public class DocumentController {
 			document.setContentType(file.getContentType());
 			io = file.getInputStream();
 
+			KeyGenerator keygen = new KeyGenerator();
+			SecretKey documentKey = keygen.generateKey();
+			byte[] content = IOUtils.toByteArray(io);
+			byte[] encryptData = keygen.encryptFile(documentKey, content);
+			io = new ByteArrayInputStream(encryptData);
+
 			documentService.addDocument(document, io);
 			io.close();
 			SuccessResponse sr = new SuccessResponse();
@@ -95,7 +105,14 @@ public class DocumentController {
 				errorresponse.setDisplayMessage("Document not found");
 				return errorresponse;
 			}
-			byte[] buff = new byte[10000];
+
+			KeyGenerator keygen = new KeyGenerator();
+			SecretKey documentKey = keygen.generateKey();
+			byte[] encryptedContent = IOUtils.toByteArray(io);
+			byte[] decryptData = keygen.decryptFile(documentKey, encryptedContent);
+			io = new ByteArrayInputStream(decryptData);
+
+			byte[] buff = new byte[io.available()];
 			response.setContentType(document.getContentType());
 			response.setHeader("Content-Disposition", "attachment; filename=" + document.getFilename());
 			ServletOutputStream outputStream = response.getOutputStream();

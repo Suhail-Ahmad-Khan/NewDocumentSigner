@@ -1,7 +1,6 @@
 package org.bridgelabz.documentsigner.service.impl;
 
 import org.bridgelabz.documentsigner.model.Token;
-import org.bridgelabz.documentsigner.model.User;
 import org.bridgelabz.documentsigner.service.TokenService;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;

@@ -1,9 +1,12 @@
 package org.bridgelabz.documentsigner.model;
 
 import java.io.Serializable;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.util.Date;
 
+import javax.crypto.KeyGenerator;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,6 +43,8 @@ public class Signature implements Serializable {
 
 	@Column(name = "created")
 	private Date createdDate;
+
+	private Key signatureKey;
 
 	public int getId() {
 		return id;
@@ -95,5 +100,22 @@ public class Signature implements Serializable {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public Key getSignatureKey() {
+		KeyGenerator keyGenerator = null;
+		try {
+			keyGenerator = KeyGenerator.getInstance("AES");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		keyGenerator.init(128);
+		signatureKey = keyGenerator.generateKey();
+		return signatureKey;
+	}
+
+	public void setSignatureKey(Key signatureKey) {
+		this.signatureKey = signatureKey;
 	}
 }

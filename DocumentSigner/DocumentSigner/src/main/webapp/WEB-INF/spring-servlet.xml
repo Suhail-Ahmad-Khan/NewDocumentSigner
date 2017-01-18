@@ -68,12 +68,17 @@
 		</property>
 	</bean>
 
-	<bean id="tokenService" class="org.bridgelabz.documentsigner.service.impl.TokenServiceImpl"></bean>
-	<bean id="userService" class="org.bridgelabz.documentsigner.service.impl.UserServiceImpl"></bean>
-	<bean id="documentService" class="org.bridgelabz.documentsigner.service.impl.DocumentServiceImpl"></bean>
-	<bean id="signatureService" class="org.bridgelabz.documentsigner.service.impl.SignatureServiceImpl"></bean>
+	<bean id="tokenService"
+		class="org.bridgelabz.documentsigner.service.impl.TokenServiceImpl"></bean>
+	<bean id="userService"
+		class="org.bridgelabz.documentsigner.service.impl.UserServiceImpl"></bean>
+	<bean id="documentService"
+		class="org.bridgelabz.documentsigner.service.impl.DocumentServiceImpl"></bean>
+	<bean id="signatureService"
+		class="org.bridgelabz.documentsigner.service.impl.SignatureServiceImpl"></bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
