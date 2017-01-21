@@ -32,21 +32,25 @@
 	</center>
 
 	<script type="text/javascript">
-	 	function loginFunction() {
+		function loginFunction() {
 			var emailV = $("#email").val();
 			var pass = $("#password").val();
-			
+
 			$.ajax({
 				url : "login",
 				method : "POST",
-				data : JSON.stringify({email : emailV, password : pass}),
-				contentType: 'application/json; charset=UTF-8',
+				data : JSON.stringify({
+					email : emailV,
+					password : pass
+				}),
+				contentType : 'application/json; charset=UTF-8',
 				dataType : "json"
-			})
-			.done(function(data) {
+			}).done(function(data) {
 				if (data.status == 1) {
 					window.location.href = 'document';
 					window.location = 'document';
+					window.location.href = 'signature';
+					window.location = 'signature';
 				} else {
 					$("#message").text(data.displayMessage);
 				}

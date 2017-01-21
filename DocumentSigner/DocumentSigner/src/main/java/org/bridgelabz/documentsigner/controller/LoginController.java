@@ -38,30 +38,19 @@ public class LoginController {
 	@Autowired
 	private TokenService tokenService;
 
+	// Opens the JSP Login page in the browser
 	@RequestMapping("/loginPage")
 	public String init(HttpServletRequest request) {
 		return "login";
 	}
 
+	// The data filled in the login page is validated from the database
+	// and proper response is generated.
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	/*
-	 * public @ResponseBody Response login(@RequestParam("email") String
-	 * email, @RequestParam("password") String password, HttpServletRequest
-	 * request, HttpServletResponse response) {
-	 */
 	public @ResponseBody Response login(@RequestBody User pUser, HttpServletRequest request,
 			HttpServletResponse response) {
-
-		/*
-		 * System.out.println( lstr ); JSONObject jo = null; try { jo =
-		 * (JSONObject) new JSONParser().parse(lstr); } catch (ParseException e)
-		 * { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
-
 		HttpSession session = request.getSession();
-		User user = userService.authUser(pUser.getEmail(), pUser.getPassword());
-		// User user = userService.authUser(jo.get("email").toString(),
-		// jo.get("password").toString());
+		User user = userService.authenticateUser(pUser.getEmail(), pUser.getPassword());
 
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 		String refreshToken = UUID.randomUUID().toString().replaceAll("-", "");
@@ -97,6 +86,7 @@ public class LoginController {
 		}
 	}
 
+	// Redirects the User back to the main page.
 	@RequestMapping(value = "/signout", method = RequestMethod.GET)
 	public void signout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -108,5 +98,4 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
-
 }

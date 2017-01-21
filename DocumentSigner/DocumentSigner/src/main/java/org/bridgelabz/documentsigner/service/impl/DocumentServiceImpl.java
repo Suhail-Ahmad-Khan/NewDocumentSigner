@@ -1,5 +1,5 @@
 // This class defines and implements the functionalities declared in the 
-// service class of the Document.
+// service interface of the Document.
 
 package org.bridgelabz.documentsigner.service.impl;
 
@@ -61,7 +61,7 @@ public class DocumentServiceImpl implements DocumentService {
 		return documentDetails;
 	}
 
-	public Document getDocumentContent(Integer id) {
+	public Document getDocumentContent(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("deprecation")
 		Document myDocument = (Document) session.createCriteria(Document.class).add(Restrictions.idEq(id))

@@ -42,6 +42,7 @@ public class DocumentController {
 	@Autowired
 	private DocumentService documentService;
 
+	// Opens up the JSP page for filling up the data
 	@RequestMapping(value = "/addDocuments", method = RequestMethod.GET)
 	public String getData(Model model) {
 		Document document = new Document();
@@ -49,11 +50,14 @@ public class DocumentController {
 		return "addDocuments";
 	}
 
+	// Takes the User to the Success page where the various functionalities
+	// are present.
 	@RequestMapping(value = "/document", method = RequestMethod.GET)
 	public String documentPage() {
 		return "success";
 	}
 
+	// Data filled on the JSP page is saved in the database
 	@RequestMapping(value = "/addDocuments", method = RequestMethod.POST)
 	public @ResponseBody Response addDocument(@ModelAttribute("document") Document document, BindingResult result,
 			MultipartFile file, HttpServletRequest request) {
@@ -66,6 +70,7 @@ public class DocumentController {
 			document.setContentType(file.getContentType());
 			io = file.getInputStream();
 
+			// Encrypts the data before data upload
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] content = IOUtils.toByteArray(io);
@@ -89,6 +94,7 @@ public class DocumentController {
 		}
 	}
 
+	// Lists the various documents uploaded by the User
 	@RequestMapping(value = "/documentList", method = RequestMethod.GET)
 	public @ResponseBody List<Document> listAllDocuments(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
@@ -98,6 +104,7 @@ public class DocumentController {
 		return documentInfo;
 	}
 
+	// Enables the User to download the document based on its id.
 	@RequestMapping(value = "/downloadDocument", method = RequestMethod.GET)
 	public @ResponseBody Response displayDocumentDetails(@RequestParam("id") Integer id, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -112,6 +119,7 @@ public class DocumentController {
 				return errorresponse;
 			}
 
+			// Decrypts the data coming from the database
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] encryptedContent = IOUtils.toByteArray(io);

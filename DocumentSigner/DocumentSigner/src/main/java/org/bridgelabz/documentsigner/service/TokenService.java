@@ -11,12 +11,7 @@ public interface TokenService {
 
 	public Token addToken(Token token);
 
-	public Token authToken(String accessToken, String refreshToken);
-
 	public Token getToken(String accessToken);
 
 	public Token getTokenByRefToken(String refreshToken);
-
-	/* public Token generateToken(User user, Token token); */
-
 }

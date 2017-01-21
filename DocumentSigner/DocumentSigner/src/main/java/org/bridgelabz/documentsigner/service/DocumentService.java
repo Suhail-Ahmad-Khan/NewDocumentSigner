@@ -18,6 +18,6 @@ public interface DocumentService {
 
 	public List<Document> listDocumentDetails(int id);
 
-	public Document getDocumentContent(Integer id);
+	public Document getDocumentContent(int id);
 
 }

@@ -1,5 +1,5 @@
 // This class defines and implements the functionalities declared in the 
-// service class of the Signature.
+// service interface of the Signature.
 
 package org.bridgelabz.documentsigner.service.impl;
 
@@ -61,7 +61,7 @@ public class SignatureServiceImpl implements SignatureService {
 		return signatureDetails;
 	}
 
-	public Signature getSignatureContent(Integer id) {
+	public Signature getSignatureContent(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("deprecation")
 		Signature mySignature = (Signature) session.createCriteria(Signature.class).add(Restrictions.idEq(id))

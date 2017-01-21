@@ -1,5 +1,5 @@
 // This class defines and implements the functionalities declared in the 
-// service class of the Token.
+// service interface of the Token.
 
 package org.bridgelabz.documentsigner.service.impl;
 
@@ -21,32 +21,15 @@ public class TokenServiceImpl implements TokenService {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@SuppressWarnings("deprecation")
-	public Token authToken(String accessToken, String refreshToken) {
-		Session session = sessionFactory.getCurrentSession();
-		try {
-			Criteria cr = session.createCriteria(Token.class);
-			Token token = (Token) cr.add(Restrictions.conjunction().add(Restrictions.eq("accessToken", accessToken))
-					.add(Restrictions.eq("refreshToken", refreshToken))).uniqueResult();
-			return token;
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public Token addToken(Token token) {
 		Session session = sessionFactory.getCurrentSession();
 
 		try {
 			session.save(token);
-			// tr.commit();
 		} catch (Exception e) {
-			// tr.rollback();
 			e.printStackTrace();
 		}
 		return token;
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -76,14 +59,4 @@ public class TokenServiceImpl implements TokenService {
 		}
 		return null;
 	}
-
-	/*
-	 * public Token generateToken(User user, Token token) {
-	 * 
-	 * String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
-	 * String refreshToken = UUID.randomUUID().toString().replaceAll("-", "");
-	 * token.setAccessToken(accessToken); token.setRefreshToken(refreshToken);
-	 * token.setUserId(user.getId()); return token; }
-	 */
-
 }

@@ -1,7 +1,7 @@
 // Program for generating the same key again and again.
 // If multiple keys are generated for encryption and decryption of data
 // it would have to be stored in the database and we cannot save the keys in the database 
-// for the sole reason that if the database has been compromised one cannot use the keys to decrypt the data
+// for the sole reason that if the database has been compromised one can use the keys to decrypt the data
 
 package org.bridgelabz.documentsigner.keygenerator;
 
@@ -23,8 +23,6 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class KeyGenerator {
-
-	SecretKey Key = generateKey();
 
 	public SecretKey generateKey() {
 		String password = "Bridgelabz Solution LLP";
@@ -63,7 +61,7 @@ public class KeyGenerator {
 	public byte[] decryptFile(SecretKey secret, byte[] bytes) {
 		Cipher cipher = null;
 		byte[] decryptedFile = null;
-		byte[] iv = null;
+		byte[] iv = null; // Initialization Vector
 		try {
 			cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -79,13 +77,11 @@ public class KeyGenerator {
 		} catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			decryptedFile = cipher.doFinal(bytes);
 		} catch (IllegalBlockSizeException | BadPaddingException e) {
 			e.printStackTrace();
 		}
-
 		return decryptedFile;
 	}
 

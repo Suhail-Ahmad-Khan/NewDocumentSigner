@@ -23,6 +23,7 @@ public class SignupController {
 	@Autowired
 	private UserService userService;
 
+	// Opens the JSP page for filling the data
 	@RequestMapping(value = "/signupPage", method = RequestMethod.GET)
 	public String signup(Model model) {
 		User user = new User();
@@ -32,6 +33,7 @@ public class SignupController {
 		return "signup";
 	}
 
+	// Saves the data about the User in the database
 	@RequestMapping(value = "/signupPage", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("user") User user, BindingResult result, HttpServletRequest request) {
 

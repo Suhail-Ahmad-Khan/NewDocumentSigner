@@ -28,6 +28,7 @@ public class TokenBasedAuthFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+
 		Date currentDate = new Date();
 
 		WebApplicationContext applicationContext = WebApplicationContextUtils
@@ -89,9 +90,11 @@ public class TokenBasedAuthFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
+	// Not used
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 
+	// Not used
 	public void destroy() {
 
 	}

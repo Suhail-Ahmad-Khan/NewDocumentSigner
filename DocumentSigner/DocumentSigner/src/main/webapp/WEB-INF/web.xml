@@ -29,16 +29,13 @@
 	<filter>
 		<filter-name>authenticationFilter</filter-name>
 		<filter-class>org.bridgelabz.documentsigner.filter.TokenBasedAuthFilter</filter-class>
-		<!-- <filter-class>org.bridgelabz.docsigner.filter.AuthenticationFilter</filter-class> -->
 	</filter>
 
 	<filter-mapping>
 		<filter-name>authenticationFilter</filter-name>
 		<url-pattern>/addDocuments</url-pattern>
-		<!-- <url-pattern>/documentDetails</url-pattern> -->
 		<url-pattern>/documentList</url-pattern>
 		<url-pattern>/addSignatures</url-pattern>
-		<!-- <url-pattern>/documentDetails</url-pattern> -->
 		<url-pattern>/signatureList</url-pattern>
 		<url-pattern>/success</url-pattern>
 		<url-pattern>/download</url-pattern>

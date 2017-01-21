@@ -18,6 +18,6 @@ public interface SignatureService {
 
 	public List<Signature> listSignatureDetails(int id);
 
-	public Signature getSignatureContent(Integer id);
+	public Signature getSignatureContent(int id);
 
 }

@@ -36,6 +36,8 @@ public class TokenController {
 	@Autowired
 	private TokenService tokenService;
 
+	// Generates new access and refresh tokens from previous refresh token
+	// for data transfer and retrieval.
 	@RequestMapping(value = "/generateTokens", method = RequestMethod.GET)
 	public @ResponseBody Response generateNewTokens(@RequestParam("refresh_token") String refreshToken,
 			HttpServletRequest request, HttpServletResponse response) {

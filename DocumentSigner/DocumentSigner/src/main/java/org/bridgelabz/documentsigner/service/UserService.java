@@ -11,6 +11,6 @@ public interface UserService {
 
 	public void addUser(User user);
 
-	public User authUser(String email, String password);
+	public User authenticateUser(String email, String password);
 
 }

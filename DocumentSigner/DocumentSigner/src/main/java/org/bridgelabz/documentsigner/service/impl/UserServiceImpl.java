@@ -1,5 +1,5 @@
 // This class defines and implements the functionalities declared in the 
-// service class of the User.
+// service interface of the User.
 
 package org.bridgelabz.documentsigner.service.impl;
 
@@ -23,20 +23,16 @@ public class UserServiceImpl implements UserService {
 
 	public void addUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		// Transaction tr = ses.beginTransaction();
 		try {
 			session.save(user);
-			// tr.commit();
 		} catch (Exception e) {
-			// tr.rollback();
 			e.printStackTrace();
 		}
 	}
 
 	@SuppressWarnings("deprecation")
-	public User authUser(String email, String password) {
+	public User authenticateUser(String email, String password) {
 		Session session = sessionFactory.getCurrentSession();
-		// select * from users where userName = '' and password = '';
 		try {
 			Criteria cr = session.createCriteria(User.class);
 

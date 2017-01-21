@@ -42,6 +42,7 @@ public class SignatureController {
 	@Autowired
 	private SignatureService signatureService;
 
+	// Opens up the JSP page for filling up the data
 	@RequestMapping(value = "/addSignatures", method = RequestMethod.GET)
 	public String getData(Model model) {
 		Signature signature = new Signature();
@@ -49,11 +50,14 @@ public class SignatureController {
 		return "addSignatures";
 	}
 
+	// Takes the User to the Success page where the various functionalities
+	// are present.
 	@RequestMapping(value = "/signature", method = RequestMethod.GET)
 	public String signaturePage() {
 		return "success";
 	}
 
+	// Data filled on the JSP page is saved in the database
 	@RequestMapping(value = "/addSignatures", method = RequestMethod.POST)
 	public @ResponseBody Response addSignature(@ModelAttribute("signature") Signature signature, BindingResult result,
 			MultipartFile file, HttpServletRequest request) {
@@ -66,6 +70,7 @@ public class SignatureController {
 			signature.setContentType(file.getContentType());
 			io = file.getInputStream();
 
+			// Encrypts the data before data upload
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] content = IOUtils.toByteArray(io);
@@ -89,6 +94,7 @@ public class SignatureController {
 		}
 	}
 
+	// Lists the various signatures uploaded by the User
 	@RequestMapping(value = "/signatureList", method = RequestMethod.GET)
 	public @ResponseBody List<Signature> listAllSignatures(HttpServletRequest request) {
 		HttpSession httpSession = request.getSession();
@@ -98,6 +104,7 @@ public class SignatureController {
 		return signatureInfo;
 	}
 
+	// Enables the User to download the signature based on its id.
 	@RequestMapping(value = "/downloadSignature", method = RequestMethod.GET)
 	public @ResponseBody Response displaySignatureDetails(@RequestParam("id") Integer id, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -112,6 +119,7 @@ public class SignatureController {
 				return errorresponse;
 			}
 
+			// Decrypts the data coming from the database
 			KeyGenerator keygen = new KeyGenerator();
 			SecretKey documentKey = keygen.generateKey();
 			byte[] encryptedContent = IOUtils.toByteArray(io);
